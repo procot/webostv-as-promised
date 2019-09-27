@@ -1,10 +1,11 @@
 {
   "name": "webostv-as-promised",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Wrapper library webOSTV.js on Promise",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "npm test"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,14 @@
     "name": "Ilya Istomin",
     "email": "ilyaistomin9817@gmail.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Procot/webOSTV-as-promised/issues"
   },
   "homepage": "https://github.com/Procot/webOSTV-as-promised#readme",
   "devDependencies": {
+    "@types/node": "^12.7.8",
     "typescript": "^3.6.3"
-  }
+  },
+  "types": "./dist/index.d.ts"
 }
