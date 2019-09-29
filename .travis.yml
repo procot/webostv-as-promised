@@ -6,7 +6,7 @@ sudo: enabled
 
 if: (type = push AND branch = master) OR (type = pull_request)
 
-install: npm ci
+install: npm i
 
 env:
   - JOB_NAME=lint NAME="Lint tests"
