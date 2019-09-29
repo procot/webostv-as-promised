@@ -14,4 +14,4 @@ env:
   - JOB_NAME=build NAME="Build"
 
 script:
-  - ls ; ls test ; ls test/mocks ; npm run $JOB_NAME
+  - npm run $JOB_NAME
