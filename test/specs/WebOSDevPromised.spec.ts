@@ -6,7 +6,7 @@ import {
   APP,
   DRM,
   LAUNCH_PARAMS
-} from '../mocks/webOSDevMock';
+} from '../mocks/WebOSDevMock';
 import { DRMAgentWrapper } from '../../src/DRMAgentWrapper';
 
 (global as any).window = {};
