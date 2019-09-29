@@ -75,7 +75,7 @@ export declare interface GetRightsErrorResponse {
    */
   subscribed: boolean;
 
-  returnValue: boolean,
+  returnValue: boolean;
   errorCode?: number;
   errorText?: string;
 }
@@ -96,7 +96,7 @@ export declare interface IsLoadedResponse {
   /**
    * Returns the client type of DRM when the DRM client is loaded successfully.
    */
-  drmType: DRMType;
+  drmType: DRMType[keyof DRMType];
 }
 
 export declare interface LoadResponse {

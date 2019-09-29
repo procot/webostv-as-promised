@@ -1,3 +1,5 @@
+const { window: { webOS } } = require('../lib/webOSTV.js');
+
 import {
   AppInfo,
   IDeviceInfo,
@@ -13,12 +15,7 @@ import { promisifyMethod } from './promisify';
  */
 
 export class WebOSPromised {
-  private webOS: typeof window.webOS;
-
-  constructor() {
-    require('../lib/webOSTV');
-    this.webOS = window.webOS;
-  }
+  private webOS = webOS;
 
   /**
    * A member representing the build version of the webOSTV.js library
@@ -102,7 +99,7 @@ export class WebOSPromised {
    * @param params
    * Service request options.
    */
-  serviceRequest<T = any>(uri: string, params?: IServiceRequestParams) {
+  serviceRequest<T = any>(uri: string, params: IServiceRequestParams = {}) {
     return promisifyMethod<T, IServiceRequestReturn>(this.webOS.service.request, params, uri);
   }
 }
