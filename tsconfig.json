@@ -10,5 +10,6 @@
       "types"
     ],                       /* List of folders to include type definitions from. */
     "esModuleInterop": true                   /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
-  }
+  },
+  "exclude": [ "dist", "test", "lib" ]
 }
