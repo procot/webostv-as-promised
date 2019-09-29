@@ -49,5 +49,5 @@ export declare interface IDeviceInfo {
    * - true: The device supports Ultra HD resolution.
    * - false: The device does not support Ultra HD resolution.
    */
-  uhd?: boolean
+  uhd?: boolean;
 }

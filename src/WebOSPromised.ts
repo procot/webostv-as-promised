@@ -15,11 +15,7 @@ import { promisifyMethod } from './promisify';
  */
 
 export class WebOSPromised {
-  private webOS: typeof window.webOS;
-
-  constructor() {
-    this.webOS = webOS;
-  }
+  private webOS = webOS;
 
   /**
    * A member representing the build version of the webOSTV.js library

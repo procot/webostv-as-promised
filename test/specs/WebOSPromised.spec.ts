@@ -9,7 +9,7 @@ import {
   APP_ROOT_PATH,
   SYSTEM_INFO,
   KEYBOARD_IS_SHOWING
-} from '../mocks/webOSMock';
+} from '../mocks/WebOSMock';
 import { IReturn } from '../mocks/method-with-hadlers';
 
 (global as any).window = {};

@@ -1,3 +1,5 @@
+const { window: { webOSDev } } = require('../lib/webOSTV-dev');
+
 import { DRMAgentWrapper } from './DRMAgentWrapper';
 import { promisifyMethod } from './promisify';
 
@@ -15,12 +17,7 @@ import {
  */
 
 export class WebOSDevPromised {
-  private webOSDev: any;
-
-  constructor() {
-    require('../lib/webOSTV-dev');
-    this.webOSDev = window.webOSDev;
-  }
+  private webOSDev = webOSDev;
 
   /**
    * A member representing the list of built-in apps on the webOS TV opened to external developers.

@@ -92,7 +92,7 @@ export declare interface WiredStatus {
    * - 'yes' - indicating the WiFi connection is connected to the Internet.
    * - 'no' - indicating the WiFi connection is not connected to the Internet.
    */
-  onInternet?: 'yes' | 'no'
+  onInternet?: 'yes' | 'no';
 }
 
 /**
