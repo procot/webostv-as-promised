@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Procot/webOSTV-as-promised.git"
+    "url": "git+https://github.com/procot/webos-as-promised.git"
   },
   "keywords": [
     "Promise",
@@ -27,9 +27,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Procot/webOSTV-as-promised/issues"
+    "url": "https://github.com/procot/webos-as-promised/issues"
   },
-  "homepage": "https://github.com/Procot/webOSTV-as-promised#readme",
+  "homepage": "https://github.com/procot/webos-as-promised#readme",
   "devDependencies": {
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",

@@ -1,11 +1,11 @@
-# webostv-as-promised
+# webos-as-promised
 
 Wrapper library [webOSTV.js](http://webostv.developer.lge.com/api/webostvjs/) on Promise
 
 ## Install
 
 ```bash
-npm i webostv-as-promised -S
+npm i webos-as-promised -S
 ```
 
 ## Usage
@@ -13,29 +13,29 @@ npm i webostv-as-promised -S
 ### webOS API
 
 ```javascript
-import { WebOSPromised } from 'webostv-as-promised';
+import { promisifyWebOS } from 'webos-as-promised';
 
-const webOS = new WebOSPromised;
+const promisedWebOS = promisifyWebOS(window.webOS);
 
-console.log(webOS.libVersion);
+console.log(promisedWebOS.libVersion);
 
-console.log(webOS.systemInfo());
+console.log(promisedWebOS.systemInfo());
 
-webOS.deviceInfo()
+promisedWebOS.deviceInfo().callResult
   .then(info => console.log(info));
 ```
 
 ### webOSDev API
 
 ```javascript
-import { WebOSDevPromised } from 'webostv-as-promised';
+import { promisifyWebOSDev } from 'webos-as-promised';
 
-const webOSDev = new WebOSDevPromised;
+const promisedWebOSDev = promisifyWebOSDev(window.webOSDev);
 
-console.log(webOSDev.APP.BROWSER);
+console.log(promisedWebOSDev.APP.BROWSER);
 
-webOSDev.LGUDID()
+promisedWebOSDev.LGUDID().callResult
   .then(res => console.log(res.id));
 
-console.log(webOSDev.launchParams());
+console.log(promisedWebOSDev.launchParams());
 ```
