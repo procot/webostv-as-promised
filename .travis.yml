@@ -8,7 +8,7 @@ if: (type = push AND branch = master) OR (type = pull_request)
 
 install: npm ci
 
-env: NODE_ENV=development
+env:
   - COMMAND=lint NAME="Lint tests"
   - COMMAND=unit NAME="Unit tests"
   - COMMAND=build NAME="Build project"
