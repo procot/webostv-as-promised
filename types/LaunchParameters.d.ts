@@ -1,4 +1,4 @@
-export declare interface LaunchParameters {
+export interface LaunchParameters {
   /**
    * The app ID or webOSDev.APP
    */

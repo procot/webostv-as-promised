@@ -1,11 +1,11 @@
-export declare interface DRMType {
+export interface DRMType {
   /** PlayReady */
   PLAYREADY: string;
   /** Widevine */
   WIDEVINE: string;
 }
 
-export declare interface DRMError {
+export interface DRMError {
   /**
    * No error.
    */
@@ -67,20 +67,16 @@ export declare interface DRMError {
   UNKNOWN_ERROR: number;
 }
 
-export declare interface GetRightsErrorResponse {
+export interface GetRightsErrorResponse {
   /**
    * Flag that indicates whether the subscription is enabled or not.
    * - true: Enabled
    * - false: Not enabled
    */
   subscribed: boolean;
-
-  returnValue: boolean;
-  errorCode?: number;
-  errorText?: string;
 }
 
-export declare interface IsLoadedResponse {
+export interface IsLoadedResponse {
   /**
    * Indicates the DRM client is loaded.
    * - true: the DRM client is loaded.
@@ -99,21 +95,21 @@ export declare interface IsLoadedResponse {
   drmType: DRMType[keyof DRMType];
 }
 
-export declare interface LoadResponse {
+export interface LoadResponse {
   /**
    * If the DRM agent loaded the DRM client successfully, return its client ID.
    */
   clientId: string;
 }
 
-export declare interface SendDrmMessageParams {
+export interface SendDrmMessageParams {
   /**
    * The message to be provided to the underlying DRM server, which is formatted according to the DRM type.
    */
   msg: string;
 }
 
-export declare interface SendDrmMessageResponse {
+export interface SendDrmMessageResponse {
   /**
    * The unique ID of message which has led to this resulting message.
    */

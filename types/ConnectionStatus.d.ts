@@ -1,4 +1,4 @@
-export declare interface GetConnectionStatusParameters {
+export interface GetConnectionStatusParameters {
   /**
    * Indicates whether to subscribe the network connection status.
    * - true: Subscribe the network connection status.
@@ -7,7 +7,7 @@ export declare interface GetConnectionStatusParameters {
   subscribe: boolean;
 }
 
-export declare interface ConnectionStatus {
+export interface ConnectionStatus {
   /**
    * Indicates whether the internet connection is available.
    * - true: The internet connection is available.
@@ -37,7 +37,7 @@ export declare interface ConnectionStatus {
  * If the wired connection is not available, the state field of this object will be set to disconnected
  * and is the only value that is returned to the calling app.
  */
-export declare interface WiredStatus {
+export interface WiredStatus {
   /**
    * If the wired connection is available it will be set to connected.
    * If the wired connection is not available, it will be set to disconnected .
@@ -101,7 +101,7 @@ export declare interface WiredStatus {
  * If the WiFi connection is not available, only the state field of this object will be set to disconnected,
  * and is the only value that is returned to the calling app.
  */
-export declare interface WifiStatus {
+export interface WifiStatus {
   /**
    * If the Wi-Fi connection is available it will be set to 'connected'.
    * If the Wi-Fi connection is not available, it will be set to 'disconnected' .
@@ -178,7 +178,7 @@ export declare interface WifiStatus {
  * If the Wi-Fi direct connection is not available, only the state field of this object will be set to disconnected,
  * and is the only value that is returned to the calling app.
  */
-export declare interface WifiDirectStatus {
+export interface WifiDirectStatus {
   /**
    * If the Wi-Fi connection is available it will be set to 'connected'.
    * If the Wi-Fi connection is not available, it will be set to 'disconnected'.
@@ -199,7 +199,7 @@ export declare interface WifiDirectStatus {
 /**
  * This object contains information on a peer-to-peer client.
  */
-export declare interface WifiPeerInfo {
+export interface WifiPeerInfo {
   /**
    * Device name.
    */
@@ -258,7 +258,7 @@ export declare interface WifiPeerInfo {
  * This object contains information on the Wi-Fi Direct settings of a Wi-Fi Peer connection.
  * It is used in Wi-Fi Peer Info and is only present when the connection uses Wi-Fi Direct.
  */
-export declare interface WifiWfdInfo {
+export interface WifiWfdInfo {
   /**
    * The flag that indicates whether the Wi-Fi Direct content protection is supported:
    * - true: Supported.

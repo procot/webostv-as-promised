@@ -1,4 +1,4 @@
-export declare interface IDeviceInfo {
+export interface DeviceInfo {
   /**
    * The model name of the device in UTF-8 format.
    */

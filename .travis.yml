@@ -9,9 +9,8 @@ if: (type = push AND branch = master) OR (type = pull_request)
 install: npm i
 
 env:
-  - JOB_NAME=lint NAME="Lint tests"
-  - JOB_NAME=unit NAME="Unit tests"
-  - JOB_NAME=build NAME="Build"
+  - COMMAND=lint NAME="Lint tests"
+  - COMMAND=unit NAME="Unit tests"
 
 script:
-  - npm run $JOB_NAME
+  - npm run $COMMAND

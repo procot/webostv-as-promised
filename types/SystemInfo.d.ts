@@ -1,4 +1,4 @@
-export declare interface ISystemInfo {
+export declare interface SystemInfo {
   /**
    * The country that TV broadcasts. If the value does not exist, undefined is returned
    */

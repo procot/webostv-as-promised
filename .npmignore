@@ -5,3 +5,4 @@
 .eslintignore
 .travis.yml
 test
+src/**/*.spec.js
