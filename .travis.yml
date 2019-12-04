@@ -6,11 +6,12 @@ sudo: enabled
 
 if: (type = push AND branch = master) OR (type = pull_request)
 
-install: npm i
+install: npm ci
 
-env:
+env: NODE_ENV=development
   - COMMAND=lint NAME="Lint tests"
   - COMMAND=unit NAME="Unit tests"
+  - COMMAND=build NAME="Build project"
 
 script:
   - npm run $COMMAND
