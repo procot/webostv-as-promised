@@ -1,6 +1,6 @@
-import { WebOSPromised } from './WebOSPromised';
-import { WebOSDevPromised } from './WebOSDevPromised';
 import { DRMAgentPromised } from './DrmAgentPromised';
+import { WebOSDevPromised } from './WebOSDevPromised';
+import { WebOSPromised } from './WebOSPromised';
 
 /**
  *  Type of argument in scheme

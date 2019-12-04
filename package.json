@@ -7,7 +7,7 @@
     "build": "webpack index.js -o bundle.js --mode production",
     "test": "npm run lint && npm run unit",
     "unit": "mocha 'src/**/*.spec.js' --require esm",
-    "lint": "eslint './**/*.js'",
+    "lint": "eslint './**/*.{js,ts}'",
     "lint:fix": "npm run lint -- --fix",
     "prepublish": "npm run build"
   },

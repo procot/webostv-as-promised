@@ -1,9 +1,9 @@
-import { DRMError, DRMType } from './drm';
-import { LaunchParameters } from './LaunchParameters';
+import { AsyncMethodReturnType, ObjectValue } from './common';
 import { ConnectionStatus, GetConnectionStatusParameters } from './ConnectionStatus';
 import { DRMAgentPromised } from './DrmAgentPromised';
-import { AsyncMethodReturnType, ObjectValue } from './common';
+import { DRMError, DRMType } from './drm';
 import { LGUDIDResponse } from './LGUDIDResponse';
+import { LaunchParameters } from './LaunchParameters';
 
 export interface WebOSDevPromised {
   /**

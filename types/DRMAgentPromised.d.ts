@@ -1,3 +1,4 @@
+import { AsyncMethodReturnType } from './common';
 import {
   DRMError,
   DRMType,
@@ -7,7 +8,6 @@ import {
   SendDrmMessageParams,
   SendDrmMessageResponse
 } from './drm';
-import {AsyncMethodReturnType} from './common';
 
 export interface DRMAgentPromised {
   /**

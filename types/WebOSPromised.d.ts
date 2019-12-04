@@ -1,7 +1,7 @@
-import { DeviceInfo } from './DeviceInfo';
-import { SystemInfo } from './SystemInfo';
-import { ServiceRequestParams, ServiceRequestReturn } from './ServiceRequest';
 import { AsyncMethodReturnType, ObjectValue } from './common';
+import { DeviceInfo } from './DeviceInfo';
+import { ServiceRequestParams, ServiceRequestReturn } from './ServiceRequest';
+import { SystemInfo } from './SystemInfo';
 
 export interface WebOSPromised {
   /**
