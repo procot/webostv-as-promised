@@ -26,7 +26,12 @@ export interface WebOSDevPromised {
 
   /**
    * Returns DRMAgent instance of a specific DRM type.
-   * @param type The DRM type to be set to the DRMAgent instance
+   * @param type The DRM type to be set to the DRMAgent instance.
+   * The value of the DRM type must be taken from `DRM.Type` field (`DRM.Type.PLAYREADY` or `DRM.Type.WIDEVINE`)
+   *
+   * @example
+   * const drmType = webOSDevPromised.DRM.Type;
+   * const drmAgent = webOSDevPromised.drmAgent(drmType);
    */
   drmAgent(type: DRMType[keyof DRMType]): DRMAgentPromised;
 
