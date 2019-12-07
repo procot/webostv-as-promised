@@ -17,7 +17,7 @@ export interface SchemeField<T> {
   type: 'field' | 'method';
   value?: Scheme<T>;
   args?: SchemeArg[];
-  mapAfter?: (resultValue: any) => any;
+  mapAfter?: Callback;
 }
 
 /**

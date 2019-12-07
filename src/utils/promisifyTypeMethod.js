@@ -13,29 +13,31 @@ const schemeArgTypeToExternalArgValueMap = {
 /**
  * Wraps a method of object in Promise if it is asyncronous method by scheme
  *
- * @param {import('../../types').ObjectValue} objValue object whose method must be promised if it needed
- * @param {string} fieldName method name
+ * @param {string} methodName name of original method
+ * @param {import('../../types').Callback} methodValue original method from object
  * @param {import('../../types').SchemeArg[]} argsFromScheme scheme of method arguments
  * @param {import('../../types').Callback} [mapAfterCallback] mapAfter callback from scheme
  * @returns {import('../../types').ObjectValue}
  */
-export function promisifyTypeMethod(objValue, fieldName, argsFromScheme, mapAfterCallback) {
-  const originalMethod = objValue[fieldName];
+export function promisifyTypeMethod(methodName, methodValue, argsFromScheme, mapAfterCallback = arg => arg) {
   const shouldPromised = argsFromScheme.some(getIsArgumentCallback);
   if (shouldPromised) {
-    objValue[fieldName] = (...args) => {
+    return (...args) => {
       const resultObject = {};
       resultObject.callResult = new Promise((resolve, reject) => {
         const finalArgs = argsFromScheme.map(argFromScheme => {
           const getFinalArg = schemeArgTypeToExternalArgValueMap[argFromScheme.type];
-          return getFinalArg(args, resolve, reject);
+          return getFinalArg(
+            args,
+            res => resolve(mapAfterCallback(res)),
+            errObj => reject(`Error execution ${methodName}: ${errObj.errorCode}.${errObj.errorText}`)
+          );
         });
-        resultObject.callReturned = originalMethod.apply(objValue, finalArgs);
+        resultObject.callReturned = methodValue(...finalArgs);
       });
       return resultObject;
     };
-  } else if (mapAfterCallback) {
-    objValue[fieldName] = (...args) => mapAfterCallback(originalMethod.apply(objValue, args));
+  } else {
+    return (...args) => mapAfterCallback(methodValue(...args));
   }
-  return objValue;
 }

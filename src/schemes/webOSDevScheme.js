@@ -14,10 +14,13 @@ export const webOSDevScheme = {
   },
   drmAgent: {
     type: 'method',
-    mapAfter: drmAgent => promisifyDrmAgent(drmAgent)
+    mapAfter: drmAgent => promisifyDrmAgent(drmAgent),
+    args: [
+      { type: 'value' }
+    ]
   },
   launch: {
-    type: 'field',
+    type: 'method',
     args: [
       { type: 'objectWithCallback' }
     ]
@@ -28,8 +31,7 @@ export const webOSDevScheme = {
   LGUDID: {
     type: 'method',
     args: [
-      { type: 'successCallback' },
-      { type: 'errorCallback' }
+      { type: 'objectWithCallback' }
     ]
   },
   connection: {

@@ -18,10 +18,8 @@ describe('promisifyObjectValue()', () => {
     const obj = {
       fetchAppId: () => 'appId'
     };
-    const originalMethod = obj.fetchAppId;
 
     const promised = promisifyObjectValue(obj, webOSScheme);
-    expect(promised.fetchAppId).to.equal(originalMethod);
     expect(promised.fetchAppId()).to.equal('appId');
   });
 
@@ -29,10 +27,8 @@ describe('promisifyObjectValue()', () => {
     const obj = {
       keyboard: { isShowing: () => true }
     };
-    const originalMethod = obj.keyboard.isShowing;
 
     const promised = promisifyObjectValue(obj, webOSScheme);
-    expect(promised.keyboard.isShowing).to.equal(originalMethod);
     expect(promised.keyboard.isShowing()).to.be.true;
   });
 

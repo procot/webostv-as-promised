@@ -9,6 +9,7 @@ import { promisifyTypeMethod } from '../promisifyTypeMethod';
  * @returns {import('../../../types').ObjectValue} object whose fields and methods have been promised
  */
 export function promisifyObjectValue(objValue, scheme) {
+  const resultObject = {};
   for (const key in scheme) {
     const schemeField = scheme[key];
     if (!(key in objValue)) {
@@ -16,12 +17,12 @@ export function promisifyObjectValue(objValue, scheme) {
     }
     switch (schemeField.type) {
     case 'field':
-      promisifyTypeField(objValue, key, schemeField.value, schemeField.mapAfter);
+      resultObject[key] = promisifyTypeField(objValue[key], schemeField.value, schemeField.mapAfter);
       break;
     case 'method':
-      promisifyTypeMethod(objValue, key, schemeField.args || [], schemeField.mapAfter);
+      resultObject[key] = promisifyTypeMethod(key, objValue[key], schemeField.args || [], schemeField.mapAfter);
       break;
     }
   }
-  return objValue;
+  return resultObject;
 }

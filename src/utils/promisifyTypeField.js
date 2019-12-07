@@ -3,18 +3,15 @@ import { promisifyObjectValue } from './promisifyObjectValue';
 /**
  * Wraps a field value of object in Promise if it needed by scheme
  *
- * @param {import('../../types').ObjectValue} objValue object whose field's values must be promised
- * @param {string} fieldName field name of object which must be promised
+ * @param {any} valueFromObject value from object
  * @param {import('../../types').Scheme} valueFromScheme scheme of field value
  * @param {import('../../types').Callback} [mapAfterCallback] mapAfter callback from scheme
- * @returns {import('../../types').ObjectValue}
+ * @returns {any}
  */
-export function promisifyTypeField(objValue, fieldName, valueFromScheme, mapAfterCallback) {
+export function promisifyTypeField(valueFromObject, valueFromScheme, mapAfterCallback = arg => arg) {
+  let result = valueFromObject;
   if (typeof valueFromScheme === 'object') {
-    objValue[fieldName] = promisifyObjectValue(objValue[fieldName], valueFromScheme);
+    result = promisifyObjectValue(valueFromObject, valueFromScheme);
   }
-  if (mapAfterCallback) {
-    objValue[fieldName] = mapAfterCallback(objValue[fieldName]);
-  }
-  return objValue;
+  return mapAfterCallback(result);
 }
