@@ -1,5 +1,5 @@
-import { expect } from 'chai';import { getIsArgumentCallback } from './';
-
+import { expect } from 'chai';
+import { getIsArgumentCallback } from './';
 
 describe('getIsArgumentCallback()', () => {
   it('should return true because argument is callback', () => {

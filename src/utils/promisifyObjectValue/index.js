@@ -11,16 +11,20 @@ import { promisifyTypeMethod } from '../promisifyTypeMethod';
 export function promisifyObjectValue(objValue, scheme) {
   const resultObject = {};
   for (const key in scheme) {
-    const schemeField = scheme[key];
+    const fieldScheme = scheme[key];
     if (!(key in objValue)) {
       continue;
     }
-    switch (schemeField.type) {
+    switch (fieldScheme.type) {
     case 'field':
-      resultObject[key] = promisifyTypeField(objValue[key], schemeField.value, schemeField.mapAfter);
+      resultObject[key] = promisifyTypeField(objValue[key], fieldScheme);
       break;
     case 'method':
-      resultObject[key] = promisifyTypeMethod(key, objValue[key], schemeField.args || [], schemeField.mapAfter);
+      resultObject[key] = promisifyTypeMethod(
+        key,
+        objValue[key].bind(objValue),
+        fieldScheme
+      );
       break;
     }
   }

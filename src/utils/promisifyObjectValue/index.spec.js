@@ -42,8 +42,8 @@ describe('promisifyObjectValue()', () => {
     expect(promised.deviceInfo).to.not.equal(originalMethod);
     const result = promised.deviceInfo();
     expect(originalMethod.called).to.be.true;
-    expect(result.callReturned).to.undefined;
-    expect(await result.callResult).to.equal('deviceInfo');
+    expect(result.result).to.undefined;
+    expect(await result.promise).to.equal('deviceInfo');
   });
 
   it('should promisify method with one plain value and one callback in arguments', async () => {
@@ -56,8 +56,8 @@ describe('promisifyObjectValue()', () => {
     expect(promised.fetchAppInfo).to.not.equal(originalMethod);
     const result = promised.fetchAppInfo('path');
     expect(originalMethod.called).to.be.true;
-    expect(result.callReturned).to.undefined;
-    expect(await result.callResult).to.equal('path');
+    expect(result.result).to.undefined;
+    expect(await result.promise).to.equal('path');
   });
 
   it('should promisify method with callbacks in object in arguments', async () => {
@@ -72,8 +72,8 @@ describe('promisifyObjectValue()', () => {
     expect(promised.service.request).to.not.equal(originalMethod);
     const result = promised.service.request('uri');
     expect(originalMethod.called).to.be.true;
-    expect(result.callReturned).to.undefined;
-    expect(await result.callResult).to.equal('uri');
+    expect(result.result).to.undefined;
+    expect(await result.promise).to.equal('uri');
   });
 
   it('method mapAfter from scheme should be called if it is not undefined', () => {

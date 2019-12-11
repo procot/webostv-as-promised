@@ -38,18 +38,18 @@ export type ObjectValue = {
   [k: string]: any;
 };
 
-export type Callback = (args: any[]) => any;
+export type Callback = (...args: any[]) => any;
 
 /**
  * Return type of asyncronous method
  */
 export interface AsyncMethodReturnType<Result, Return = undefined> {
   /**
-   * Type of value returned when the asyncronous method succeeds
+   * Value of success execution asyncronous method
    */
-  callResult: Promise<Result>;
+  promise: Promise<Result>;
   /**
-   * Return type of asyncronous method
+   * Return value of asyncronous method
    */
-  callReturned: Return;
+  result: Return;
 }

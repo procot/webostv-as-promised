@@ -15,25 +15,26 @@ const schemeArgTypeToExternalArgValueMap = {
  *
  * @param {string} methodName name of original method
  * @param {import('../../types').Callback} methodValue original method from object
- * @param {import('../../types').SchemeArg[]} argsFromScheme scheme of method arguments
- * @param {import('../../types').Callback} [mapAfterCallback] mapAfter callback from scheme
- * @returns {import('../../types').ObjectValue}
+ * @param {import('../../types').SchemeField} methodScheme scheme of method arguments
+ * @returns {import('../../types').Callback}
  */
-export function promisifyTypeMethod(methodName, methodValue, argsFromScheme, mapAfterCallback = arg => arg) {
-  const shouldPromised = argsFromScheme.some(getIsArgumentCallback);
+export function promisifyTypeMethod(methodName, methodValue, methodScheme) {
+  const argsScheme = methodScheme.args || [];
+  const mapAfterCallback = methodScheme.mapAfter || (arg => arg);
+  const shouldPromised = argsScheme.some(getIsArgumentCallback);
   if (shouldPromised) {
     return (...args) => {
       const resultObject = {};
-      resultObject.callResult = new Promise((resolve, reject) => {
-        const finalArgs = argsFromScheme.map(argFromScheme => {
+      resultObject.promise = new Promise((resolve, reject) => {
+        const finalArgs = argsScheme.map(argFromScheme => {
           const getFinalArg = schemeArgTypeToExternalArgValueMap[argFromScheme.type];
           return getFinalArg(
             args,
             res => resolve(mapAfterCallback(res)),
-            errObj => reject(`Error execution ${methodName}: ${errObj.errorCode}.${errObj.errorText}`)
+            errObj => reject(new Error(`Error execution ${methodName}: ${errObj.errorCode}.${errObj.errorText}`))
           );
         });
-        resultObject.callReturned = methodValue(...finalArgs);
+        resultObject.result = methodValue(...finalArgs);
       });
       return resultObject;
     };
