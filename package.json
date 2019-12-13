@@ -9,7 +9,7 @@
     "unit": "mocha 'src/**/*.spec.js' --require esm",
     "lint": "eslint './**/*.{js,ts}'",
     "lint:fix": "npm run lint -- --fix",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
