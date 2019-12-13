@@ -4,5 +4,7 @@
 .eslintrc.json
 .eslintignore
 .travis.yml
+rollup.config.js
+package-lock.json
 test
 src/**/*.spec.js
