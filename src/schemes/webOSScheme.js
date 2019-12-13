@@ -48,6 +48,7 @@ export const webOSScheme = {
     value: {
       request: {
         type: 'method',
+        returnType: 'object',
         args: [
           { type: 'value' },
           { type: 'objectWithCallback' }

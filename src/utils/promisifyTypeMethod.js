@@ -7,7 +7,7 @@ const schemeArgTypeToExternalArgValueMap = {
   value: externalArgs => externalArgs.shift(),
   successCallback: (_, resolveCallback) => resolveCallback,
   errorCallback: (_, __, rejectCallback) => rejectCallback,
-  objectWithCallback: (externalArg, resolveCallback, rejectCallback) => Object.assign(externalArg || {}, { onSuccess: resolveCallback, onFailure: rejectCallback })
+  objectWithCallback: (externalArgs, resolveCallback, rejectCallback) => Object.assign(externalArgs.shift() || {}, { onSuccess: resolveCallback, onFailure: rejectCallback })
 };
 
 /**
@@ -36,7 +36,7 @@ export function promisifyTypeMethod(methodName, methodValue, methodScheme) {
         });
         resultObject.result = methodValue(...finalArgs);
       });
-      return resultObject;
+      return methodScheme.returnType === 'object' ? resultObject : resultObject.promise;
     };
   } else {
     return (...args) => mapAfterCallback(methodValue(...args));

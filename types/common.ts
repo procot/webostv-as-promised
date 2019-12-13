@@ -15,6 +15,7 @@ export interface SchemeArg {
 
 export interface SchemeField<T> {
   type: 'field' | 'method';
+  returnType?: 'object' | 'promise' | 'original';
   value?: Scheme<T>;
   args?: SchemeArg[];
   mapAfter?: Callback;

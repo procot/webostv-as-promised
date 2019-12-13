@@ -32,6 +32,25 @@ describe('promisifyObjectValue()', () => {
     expect(promised.keyboard.isShowing()).to.be.true;
   });
 
+  it('promisified method should return object if returnType in scheme equals object', async () => {
+    const obj = {
+      service: {
+        request: sinon.spy((uri, { onSuccess, param }) => {
+          setTimeout(onSuccess.bind(null, { uri, param }), 10);
+          return { uri };
+        })
+      }
+    };
+
+    const promised = promisifyObjectValue(obj, webOSScheme);
+    expect(promised.service).to.not.equal(obj.service.request);
+    const result = promised.service.request('uri', { param: 'param' });
+    expect(obj.service.request.called).to.be.true;
+    expect(result).to.instanceOf(Object);
+    expect(result.result).to.deep.equal({ uri: 'uri' });
+    expect(await result.promise).to.deep.equal({ uri: 'uri', param: 'param' });
+  });
+
   it('should promisify method with one callback in arguments', async () => {
     const obj = {
       deviceInfo: sinon.spy(callback => { setTimeout(callback.bind(null, 'deviceInfo'), 10); })
@@ -42,8 +61,7 @@ describe('promisifyObjectValue()', () => {
     expect(promised.deviceInfo).to.not.equal(originalMethod);
     const result = promised.deviceInfo();
     expect(originalMethod.called).to.be.true;
-    expect(result.result).to.undefined;
-    expect(await result.promise).to.equal('deviceInfo');
+    expect(await result).to.equal('deviceInfo');
   });
 
   it('should promisify method with one plain value and one callback in arguments', async () => {
@@ -56,8 +74,7 @@ describe('promisifyObjectValue()', () => {
     expect(promised.fetchAppInfo).to.not.equal(originalMethod);
     const result = promised.fetchAppInfo('path');
     expect(originalMethod.called).to.be.true;
-    expect(result.result).to.undefined;
-    expect(await result.promise).to.equal('path');
+    expect(await result).to.equal('path');
   });
 
   it('should promisify method with callbacks in object in arguments', async () => {
