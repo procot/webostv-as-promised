@@ -1,4 +1,3 @@
-import { AsyncMethodReturnType } from './common';
 import {
   DRMError,
   DRMType,
@@ -35,27 +34,27 @@ export interface DRMAgentPromised {
    * This method is supported in the following DRM type only:
    * - PlayReady
    */
-  getRightsError(): AsyncMethodReturnType<GetRightsErrorResponse>;
+  getRightsError(): Promise<GetRightsErrorResponse>;
 
   /**
    * Checks whether a DRM client that corresponds to given application ID exists.
    */
-  isLoaded(): AsyncMethodReturnType<IsLoadedResponse>;
+  isLoaded(): Promise<IsLoadedResponse>;
 
   /**
    * Creates a client instance for a certain type of DRM.
    * The DRM type is specified when a DRM agent is created.
    */
-  load(): AsyncMethodReturnType<LoadResponse>;
+  load(): Promise<LoadResponse>;
 
   /**
    * Sends a DRM message to a DRM service.
    * After receiving the message, the DRM service starts to parse the message and perform the DRM operation.
    */
-  sendDrmMessage(params?: SendDrmMessageParams): AsyncMethodReturnType<SendDrmMessageResponse>;
+  sendDrmMessage(params?: SendDrmMessageParams): Promise<SendDrmMessageResponse>;
 
   /**
    * Removes a DRM client instance and deallocates relevant resources.
    */
-  unload(): AsyncMethodReturnType<{}>;
+  unload(): Promise<void>;
 }

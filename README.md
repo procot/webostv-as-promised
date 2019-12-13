@@ -21,8 +21,16 @@ console.log(promisedWebOS.libVersion);
 
 console.log(promisedWebOS.systemInfo());
 
-promisedWebOS.deviceInfo().callResult
+promisedWebOS.deviceInfo()
   .then(info => console.log(info));
+
+const systemTimeRequest = promisedWebOS.service.request('luna://com.palm.systemservice', {
+    method: 'time/getSystemTime',
+    parameters: { subscribe: true }
+});
+systemTimeRequest.promise.then(res => console.log(res));
+// or
+systemTimeRequest.result.cancel();
 ```
 
 ### webOSDev API
@@ -34,7 +42,7 @@ const promisedWebOSDev = promisifyWebOSDev(window.webOSDev);
 
 console.log(promisedWebOSDev.APP.BROWSER);
 
-promisedWebOSDev.LGUDID().callResult
+promisedWebOSDev.LGUDID()
   .then(res => console.log(res.id));
 
 console.log(promisedWebOSDev.launchParams());

@@ -1,4 +1,4 @@
-import { AsyncMethodReturnType, ObjectValue } from './common';
+import { AsyncMethodObjectReturnType, ObjectValue } from './common';
 import { DeviceInfo } from './DeviceInfo';
 import { ServiceRequestParams, ServiceRequestReturn } from './ServiceRequest';
 import { SystemInfo } from './SystemInfo';
@@ -24,7 +24,7 @@ export interface WebOSPromised {
    *
    * @returns JSON object containing the device information details
    */
-  deviceInfo(): AsyncMethodReturnType<DeviceInfo>;
+  deviceInfo(): Promise<DeviceInfo>;
 
   /**
    * Returns an app ID of an app calling this method
@@ -39,7 +39,7 @@ export interface WebOSPromised {
    * - If your app is hosted by a server, the path will be the URL of the server
    * @returns The JSON object read from the app's appinfo.json file. If it is not found, undefined is returned.
    */
-  fetchAppInfo(path?: string): AsyncMethodReturnType<ObjectValue | undefined>;
+  fetchAppInfo(path?: string): Promise<ObjectValue | undefined>;
 
   /**
    * Returns the full URI path of the caller app
@@ -82,6 +82,6 @@ export interface WebOSPromised {
      *
      * @returns Resulting request object. This object can be used to cancel subscriptions.
      */
-    request<T = any>(uri: string, params?: ServiceRequestParams): AsyncMethodReturnType<T, ServiceRequestReturn>;
+    request<T = any>(uri: string, params?: ServiceRequestParams): AsyncMethodObjectReturnType<T, ServiceRequestReturn>;
   };
 }

@@ -1,9 +1,9 @@
-import { AsyncMethodReturnType, ObjectValue } from './common';
 import { ConnectionStatus, GetConnectionStatusParameters } from './ConnectionStatus';
 import { DRMAgentPromised } from './DrmAgentPromised';
 import { DRMError, DRMType } from './drm';
 import { LGUDIDResponse } from './LGUDIDResponse';
 import { LaunchParameters } from './LaunchParameters';
+import { ObjectValue } from './common';
 
 export interface WebOSDevPromised {
   /**
@@ -39,7 +39,7 @@ export interface WebOSDevPromised {
    * Launches an application with parameters.
    * @param parameters The JSON object containing an app ID, parameters
    */
-  launch(parameters: LaunchParameters): AsyncMethodReturnType<void>;
+  launch(parameters: LaunchParameters): Promise<void>;
 
   /**
    * Passes parameters of an app launched by the webOSDev.launch method.
@@ -49,12 +49,12 @@ export interface WebOSDevPromised {
   /**
    * Returns a device ID provided by the webOS TV since webOS TV 3.0.
    */
-  LGUDID(): AsyncMethodReturnType<LGUDIDResponse>;
+  LGUDID(): Promise<LGUDIDResponse>;
 
   readonly connection: {
     /**
      * Returns the network connection state.
      */
-    getStatus(parameters: GetConnectionStatusParameters): AsyncMethodReturnType<ConnectionStatus>;
+    getStatus(parameters: GetConnectionStatusParameters): Promise<ConnectionStatus>;
   };
 }

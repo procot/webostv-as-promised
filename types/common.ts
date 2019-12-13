@@ -44,7 +44,7 @@ export type Callback = (...args: any[]) => any;
 /**
  * Return type of asyncronous method
  */
-export interface AsyncMethodReturnType<Result, Return = undefined> {
+export interface AsyncMethodObjectReturnType<Result, Return = undefined> {
   /**
    * Value of success execution asyncronous method
    */
