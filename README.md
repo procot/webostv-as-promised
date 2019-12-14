@@ -47,3 +47,25 @@ promisedWebOSDev.LGUDID()
 
 console.log(promisedWebOSDev.launchParams());
 ```
+
+## webOSTV.js library
+
+Folder `lib` contains a source code (`webOSTV.js`, `webOSTV-dev.js`) of the webOSTV.js library which may be includes to the js bundle for LG webOS web application.
+
+For example, include `webOSTV.js`:
+```javascript
+import 'webos-as-promised/lib/webOSTV';
+```
+or
+```javascript
+require('webos-as-promised/lib/webOSTV');
+```
+
+For example, include `webOSTV-dev.js`:
+```javascript
+import 'webos-as-promised/lib/webOSTV-dev';
+```
+or
+```javascript
+require('webos-as-promised/lib/webOSTV-dev');
+```
