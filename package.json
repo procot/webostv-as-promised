@@ -1,5 +1,5 @@
 {
-  "name": "webos-as-promised",
+  "name": "webostv-as-promised",
   "version": "0.0.2",
   "description": "Wrapper library webOSTV.js on Promise",
   "main": "./bundle.js",

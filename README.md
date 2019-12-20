@@ -1,4 +1,4 @@
-# webos-as-promised
+# webostv-as-promised
 
 Wrapper library [webOSTV.js](http://webostv.developer.lge.com/api/webostvjs/) on Promise
 
@@ -46,26 +46,4 @@ promisedWebOSDev.LGUDID()
   .then(res => console.log(res.id));
 
 console.log(promisedWebOSDev.launchParams());
-```
-
-## webOSTV.js library
-
-Folder `lib` contains a source code (`webOSTV.js`, `webOSTV-dev.js`) of the webOSTV.js library which may be includes to the js bundle for LG webOS web application.
-
-For example, include `webOSTV.js`:
-```javascript
-import 'webos-as-promised/lib/webOSTV';
-```
-or
-```javascript
-require('webos-as-promised/lib/webOSTV');
-```
-
-For example, include `webOSTV-dev.js`:
-```javascript
-import 'webos-as-promised/lib/webOSTV-dev';
-```
-or
-```javascript
-require('webos-as-promised/lib/webOSTV-dev');
 ```
