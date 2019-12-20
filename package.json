@@ -62,5 +62,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "@procot/webostv": "^1.1.1"
   }
 }
