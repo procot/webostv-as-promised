@@ -5,8 +5,7 @@
   "main": "./bundle.js",
   "scripts": {
     "build": "rollup -c",
-    "test": "npm run lint && npm run unit",
-    "unit": "mocha 'src/**/*.spec.js' --require esm",
+    "test": "npm run lint",
     "lint": "eslint './**/*.{js,ts}'",
     "lint:fix": "npm run lint -- --fix",
     "prepublishOnly": "npm run build"

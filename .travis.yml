@@ -10,7 +10,6 @@ install: npm ci
 
 env:
   - COMMAND=lint NAME="Lint tests"
-  - COMMAND=unit NAME="Unit tests"
   - COMMAND=build NAME="Build project"
 
 script:
