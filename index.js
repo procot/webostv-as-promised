@@ -9,7 +9,7 @@ export function promisifyWebOS(webOS) {
   webOSPromised.fetchAppInfo = path => new Promise(resolve => webOS.fetchAppInfo(resolve, path));
   webOSPromised.service.request = (uri, params) => {
     const binded = webOS.service.request.bind(webOS.service, uri);
-    return promisifyRequest(binded)(params);
+    return promisifyRequest(binded, true)(params);
   };
 
   return webOSPromised;
@@ -48,15 +48,17 @@ export function promisifyDrmAgent(drmAgent) {
   return drmAgentPromised;
 }
 
-export function promisifyRequest(fn) {
+export function promisifyRequest(fn, returnObject = false) {
   return params => {
-    return new Promise((resolve, reject) => {
-      fn(
+    const resultObject = {};
+    resultObject.promise =  new Promise((resolve, reject) => {
+      resultObject.return = fn(
         Object.assign(params || {}, {
           onSuccess: resolve,
           onFailure: errObj => reject(new Error(`Error: ${errObj.errorCode}.${errObj.errorText}`))
         })
       );
     });
+    return returnObject ? resultObject : resultObject.promise;
   }
 }

@@ -33,12 +33,13 @@ export function promisifyDrmAgent(drmAgent: DRMAgent): DRMAgentPromised;
 /**
  * Wraps a method for returning the promise
  * @param fn a method for wrapping
+ * @param returnObject should return a object with field promise and field with return value of method
  * @returns wrapped method
  */
 export function promisifyRequest<
   Result extends any,
   Params extends RequestParams<Result>,
->(fn: (params?: Params) => any): Promise<Result>;
+>(fn: (params?: Params) => any, returnObject?: boolean): Promise<Result>;
 
 export interface WebOSPromised extends Omit<WebOS, 'deviceInfo' | 'fetchAppInfo' | 'service'> {
   /**

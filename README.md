@@ -5,7 +5,7 @@ Wrapper library [webOSTV.js](http://webostv.developer.lge.com/api/webostvjs/) on
 ## Install
 
 ```bash
-npm i webos-as-promised -S
+npm i webostv-as-promised -S
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm i webos-as-promised -S
 ### webOS API
 
 ```javascript
-import { promisifyWebOS } from 'webos-as-promised';
+import { promisifyWebOS } from 'webostv-as-promised';
 
 const promisedWebOS = promisifyWebOS(window.webOS);
 
@@ -30,13 +30,13 @@ const systemTimeRequest = promisedWebOS.service.request('luna://com.palm.systems
 });
 systemTimeRequest.promise.then(res => console.log(res));
 // or
-systemTimeRequest.result.cancel();
+systemTimeRequest.return.cancel();
 ```
 
 ### webOSDev API
 
 ```javascript
-import { promisifyWebOSDev } from 'webos-as-promised';
+import { promisifyWebOSDev } from 'webostv-as-promised';
 
 const promisedWebOSDev = promisifyWebOSDev(window.webOSDev);
 
