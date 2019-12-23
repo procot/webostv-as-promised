@@ -63,6 +63,7 @@
     }
   },
   "dependencies": {
-    "@procot/webostv": "^1.1.1"
+    "@procot/webostv": "^1.1.1",
+    "promise-polyfill": "^8.1.3"
   }
 }

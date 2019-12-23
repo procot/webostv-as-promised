@@ -1,3 +1,5 @@
+import 'promise-polyfill/src/polyfill';
+
 /**
  * @param {WebOS} webOS
  * @returns {import('.').WebOSPromised}
