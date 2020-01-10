@@ -1,3 +1,4 @@
+import { DeviceInfo, ServiceRequestParams, ServiceRequestReturn, WebOS } from '@procot/webostv/webOSTV';
 import { PromisedRequestMethodReturnObject, promisifyRequest } from './promisifyRequest';
 import { RequestCallback } from './types';
 
@@ -11,12 +12,18 @@ import { RequestCallback } from './types';
  */
 export function promisifyWebOS(webOS: WebOS): WebOSPromised {
   const webOSPromised: WebOSPromised = Object.create(webOS);
-  webOSPromised.deviceInfo = () => new Promise(resolve => webOS.deviceInfo(resolve));
-  webOSPromised.fetchAppInfo = (path?: string) => new Promise(resolve => webOS.fetchAppInfo(resolve, path));
-  webOSPromised.service.request = (uri: string, params?: ServiceRequestParamsPromised) => {
-    const binded = webOS.service.request.bind(webOS.service, uri);
-    return promisifyRequest(binded, true)(params);
-  };
+
+  Object.defineProperties(webOSPromised, {
+    deviceInfo: { value: () => new Promise(resolve => webOS.deviceInfo(resolve)) },
+    fetchAppInfo: { value: (path?: string) => new Promise(resolve => webOS.fetchAppInfo(resolve, path)) }
+  });
+
+  Object.defineProperty(webOSPromised.service, 'request', {
+    value: (uri: string, params?: ServiceRequestParamsPromised) => {
+      const binded = webOS.service.request.bind(webOS.service, uri);
+      return promisifyRequest(binded, true)(params);
+    }
+  });
 
   return webOSPromised;
 }

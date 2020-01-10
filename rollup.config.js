@@ -2,7 +2,7 @@ import analyze from 'rollup-plugin-analyzer';
 import typescript from '@rollup/plugin-typescript';
 
 export default {
-  input: 'index.ts',
+  input: 'index.js',
   output: {
     file: 'bundle.js',
     format: 'cjs'

@@ -1,3 +1,11 @@
+import {
+  ConnectionStatus,
+  DRMType,
+  GetConnectionStatusParameters,
+  LGUDIDResponse,
+  LaunchParameters,
+  WebOSDev
+} from '@procot/webostv/webOSTV-dev';
 import { DRMAgentPromised, promisifyDrmAgent } from './promisifyDrmAgent';
 import { RequestCallback } from './types';
 import { promisifyRequest } from './promisifyRequest';
@@ -13,10 +21,15 @@ import { promisifyRequest } from './promisifyRequest';
 export function promisifyWebOSDev(webOSDev: WebOSDev): WebOSDevPromised {
   const webOSDevPromised: WebOSDevPromised = Object.create(webOSDev);
 
-  webOSDevPromised.launch = promisifyRequest(webOSDev.launch.bind(webOSDev));
-  webOSDevPromised.LGUDID = promisifyRequest(webOSDev.LGUDID.bind(webOSDev));
-  webOSDevPromised.connection.getStatus = promisifyRequest(webOSDev.connection.getStatus.bind(webOSDev.connection));
-  webOSDevPromised.drmAgent = (type: string) => promisifyDrmAgent(webOSDev.drmAgent(type));
+  Object.defineProperties(webOSDevPromised, {
+    launch: { value: promisifyRequest(webOSDev.launch.bind(webOSDev)) },
+    LGUDID: { value: promisifyRequest(webOSDev.LGUDID.bind(webOSDev)) },
+    drmAgent: { value: (type: string) => promisifyDrmAgent(webOSDev.drmAgent(type)) }
+  });
+
+  Object.defineProperty(webOSDevPromised.connection, 'getStatus', {
+    value: promisifyRequest(webOSDev.connection.getStatus.bind(webOSDev.connection))
+  });
 
   return webOSDevPromised;
 }

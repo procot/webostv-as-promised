@@ -1,3 +1,11 @@
+import {
+  DRMAgent,
+  GetRightsErrorResponse,
+  IsLoadedResponse,
+  LoadResponse,
+  SendDrmMessageParams,
+  SendDrmMessageResponse
+} from '@procot/webostv/webOSTV-dev';
 import { RequestCallback } from './types';
 import { promisifyRequest } from './promisifyRequest';
 
@@ -12,11 +20,13 @@ import { promisifyRequest } from './promisifyRequest';
 export function promisifyDrmAgent(drmAgent: DRMAgent): DRMAgentPromised {
   const drmAgentPromised: DRMAgentPromised = Object.assign(drmAgent);
 
-  drmAgentPromised.getRightsError = promisifyRequest(drmAgent.getRightsError.bind(drmAgent));
-  drmAgentPromised.isLoaded = promisifyRequest(drmAgent.isLoaded.bind(drmAgent));
-  drmAgentPromised.load = promisifyRequest(drmAgent.load.bind(drmAgent));
-  drmAgentPromised.sendDrmMessage = promisifyRequest(drmAgent.sendDrmMessage.bind(drmAgent));
-  drmAgentPromised.unload = promisifyRequest(drmAgent.unload.bind(drmAgent));
+  Object.defineProperties(drmAgentPromised, {
+    getRightsError: { value: promisifyRequest(drmAgent.getRightsError.bind(drmAgent)) },
+    isLoaded: { value: promisifyRequest(drmAgent.isLoaded.bind(drmAgent)) },
+    load: { value: promisifyRequest(drmAgent.load.bind(drmAgent)) },
+    sendDrmMessage: { value: promisifyRequest(drmAgent.sendDrmMessage.bind(drmAgent)) },
+    unload: { value: promisifyRequest(drmAgent.unload.bind(drmAgent)) }
+  });
 
   return drmAgentPromised;
 }
