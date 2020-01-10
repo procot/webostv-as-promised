@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { promisifyRequest } from '../src/promisifyRequest';
 
 describe('promisifyRequest', () => {
-  it('promised method should return promise because `returnObject` arg is false of undefined', async () => {
+  it('promised method should return promise because `returnObject` arg is false or undefined', async () => {
     const fn = ({ onSuccess }: RequestParams<number>) => setTimeout(() => onSuccess(3), 100);
 
     const promisedFn1 = promisifyRequest(fn);
