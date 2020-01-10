@@ -1,11 +1,5 @@
-import {
-  DRMAgent,
-  GetRightsErrorResponse,
-  IsLoadedResponse,
-  LoadResponse,
-  SendDrmMessageParams,
-  SendDrmMessageResponse
-} from '@procot/webostv/webOSTV-dev';
+/// <reference types="@procot/webostv/webOSTV-dev/drmAgent" />
+
 import { RequestCallback } from './types';
 import { promisifyRequest } from './promisifyRequest';
 

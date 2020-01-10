@@ -1,11 +1,5 @@
-import {
-  ConnectionStatus,
-  DRMType,
-  GetConnectionStatusParameters,
-  LGUDIDResponse,
-  LaunchParameters,
-  WebOSDev
-} from '@procot/webostv/webOSTV-dev';
+/// <reference types="@procot/webostv/webOSTV-dev" />
+
 import { DRMAgentPromised, promisifyDrmAgent } from './promisifyDrmAgent';
 import { RequestCallback } from './types';
 import { promisifyRequest } from './promisifyRequest';

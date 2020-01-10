@@ -1,4 +1,5 @@
-import { DeviceInfo, ServiceRequestParams, ServiceRequestReturn, WebOS } from '@procot/webostv/webOSTV';
+/// <reference types="@procot/webostv/webOSTV" />
+
 import { PromisedRequestMethodReturnObject, promisifyRequest } from './promisifyRequest';
 import { RequestCallback } from './types';
 
