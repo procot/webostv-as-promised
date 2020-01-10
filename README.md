@@ -30,7 +30,7 @@ const systemTimeRequest = promisedWebOS.service.request('luna://com.palm.systems
 });
 systemTimeRequest.promise.then(res => console.log(res));
 // or
-systemTimeRequest.return.cancel();
+systemTimeRequest.returnValue.cancel();
 ```
 
 ### webOSDev API

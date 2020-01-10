@@ -1,14 +1,14 @@
 import analyze from 'rollup-plugin-analyzer';
-import resolve from 'rollup-plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 
 export default {
-  input: 'index.js',
+  input: 'index.ts',
   output: {
     file: 'bundle.js',
     format: 'cjs'
   },
   plugins: [
-    resolve(),
+    typescript(),
     analyze({ summaryOnly: true }),
   ]
 };

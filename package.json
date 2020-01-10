@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "Wrapper library webOSTV.js on Promise",
   "main": "./bundle.js",
+  "type": "index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "test": "npm run lint",
@@ -30,6 +31,7 @@
   },
   "homepage": "https://github.com/procot/webos-as-promised#readme",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^2.1.0",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.14",
