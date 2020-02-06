@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Wrapper library webOSTV.js on Promise",
   "main": "./bundle.js",
-  "type": "index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "test": "npm run lint && npm run unit",
