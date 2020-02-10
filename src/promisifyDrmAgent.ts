@@ -12,7 +12,7 @@ import { promisifyRequest } from './promisifyRequest';
  * @returns promised `DRMAgent` instance
  */
 export function promisifyDrmAgent(drmAgent: DRMAgent): DRMAgentPromised {
-  const drmAgentPromised: DRMAgentPromised = Object.assign(drmAgent);
+  const drmAgentPromised: DRMAgentPromised = Object.create(drmAgent);
 
   Object.defineProperties(drmAgentPromised, {
     getRightsError: { value: promisifyRequest(drmAgent.getRightsError.bind(drmAgent)) },

@@ -10,7 +10,7 @@
     "lint": "eslint './**/*.{js,ts}'",
     "lint:fix": "npm run lint -- --fix",
     "unit": "mocha -r ts-node/register/transpile-only tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",

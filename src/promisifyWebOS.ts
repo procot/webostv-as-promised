@@ -1,6 +1,6 @@
 /// <reference types="@procot/webostv/webOSTV" />
 
-import { PromisedRequestMethodReturnObject, promisifyRequest } from './promisifyRequest';
+import { PromisedRequestMethodReturnTypeObject, promisifyRequest } from './promisifyRequest';
 import { RequestCallback } from './types';
 
 /**
@@ -65,7 +65,7 @@ export interface WebOSPromised extends Omit<WebOS, 'deviceInfo' | 'fetchAppInfo'
      *
      * @returns Resulting request object. This object can be used to cancel subscriptions.
      */
-    request(uri: string, params?: ServiceRequestParamsPromised): PromisedRequestMethodReturnObject<ServiceRequestReturn, any>;
+    request(uri: string, params?: ServiceRequestParamsPromised): PromisedRequestMethodReturnTypeObject<ServiceRequestReturn, any>;
   };
 }
 
