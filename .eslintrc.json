@@ -1,18 +1,43 @@
 {
-  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "mocha": true
+  },
   "extends": [
-    "plugin:@typescript-eslint/recommended"
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
   ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+    "sourceType": "module"
   },
+  "plugins": [
+    "autofix",
+    "sort-imports-es6-autofix",
+    "@typescript-eslint"
+  ],
   "rules": {
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/interface-name-prefix": 0,
-    "@typescript-eslint/no-empty-interface": 0
+    "indent": ["error", 2],
+    "autofix/no-debugger": "error",
+    "no-case-declarations": "off",
+    "quotes": ["error", "single"],
+    "object-curly-spacing": [2, "always"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }],
+    "sort-imports-es6-autofix/sort-imports-es6": [2, {
+      "ignoreCase": false,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+    }]
   }
 }

@@ -13,29 +13,37 @@ npm i webostv-as-promised -S
 ### webOS API
 
 ```javascript
-import { WebOSPromised } from 'webostv-as-promised';
+import { promisifyWebOS } from 'webostv-as-promised';
 
-const webOS = new WebOSPromised;
+const promisedWebOS = promisifyWebOS(window.webOS);
 
-console.log(webOS.libVersion);
+console.log(promisedWebOS.libVersion);
 
-console.log(webOS.systemInfo());
+console.log(promisedWebOS.systemInfo());
 
-webOS.deviceInfo()
+promisedWebOS.deviceInfo()
   .then(info => console.log(info));
+
+const systemTimeRequest = promisedWebOS.service.request('luna://com.palm.systemservice', {
+    method: 'time/getSystemTime',
+    parameters: { subscribe: true }
+});
+systemTimeRequest.promise.then(res => console.log(res));
+// or
+systemTimeRequest.returnValue.cancel();
 ```
 
 ### webOSDev API
 
 ```javascript
-import { WebOSDevPromised } from 'webostv-as-promised';
+import { promisifyWebOSDev } from 'webostv-as-promised';
 
-const webOSDev = new WebOSDevPromised;
+const promisedWebOSDev = promisifyWebOSDev(window.webOSDev);
 
-console.log(webOSDev.APP.BROWSER);
+console.log(promisedWebOSDev.APP.BROWSER);
 
-webOSDev.LGUDID()
+promisedWebOSDev.LGUDID()
   .then(res => console.log(res.id));
 
-console.log(webOSDev.launchParams());
+console.log(promisedWebOSDev.launchParams());
 ```

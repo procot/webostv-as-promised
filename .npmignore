@@ -4,4 +4,6 @@
 .eslintrc.json
 .eslintignore
 .travis.yml
-test
+rollup.config.js
+package-lock.json
+tsconfig.json
