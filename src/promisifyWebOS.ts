@@ -19,10 +19,13 @@ export function promisifyWebOS(webOS: WebOS): WebOSPromised {
     fetchAppInfo: { value: (path?: string) => new Promise(resolve => webOS.fetchAppInfo(resolve, path)) }
   });
 
-  Object.defineProperty(webOSPromised.service, 'request', {
-    value: (uri: string, params?: ServiceRequestParamsPromised) => {
-      const binded = webOS.service.request.bind(webOS.service, uri);
-      return promisifyRequest(binded, true)(params);
+  Object.defineProperty(webOSPromised, 'service', {
+    value: {
+      ...webOS.service,
+      request: (uri: string, params?: ServiceRequestParamsPromised) => {
+        const binded = webOS.service.request.bind(webOS.service, uri);
+        return promisifyRequest(binded, true)(params);
+      }
     }
   });
 
