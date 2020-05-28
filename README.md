@@ -1,3 +1,5 @@
+![Publish to NPM](https://github.com/procot/webostv-as-promised/workflows/Publish%20to%20NPM/badge.svg)
+
 # webostv-as-promised
 
 Wrapper library [webOSTV.js](http://webostv.developer.lge.com/api/webostvjs/) on Promise
