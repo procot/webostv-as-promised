@@ -18,7 +18,7 @@ export function promisifyWebOSDev(webOSDev: WebOSTV.WebOSDev): WebOSDevPromised 
   Object.defineProperties(webOSDevPromised, {
     launch: { value: promisifyRequest(webOSDev.launch.bind(webOSDev)) },
     LGUDID: { value: promisifyRequest(webOSDev.LGUDID.bind(webOSDev)) },
-    drmAgent: { value: (type: string) => promisifyDrmAgent(webOSDev.drmAgent(type)) }
+    drmAgent: { value: (type: WebOSTV.DRMType[keyof WebOSTV.DRMType]) => promisifyDrmAgent(webOSDev.drmAgent(type)) }
   });
 
   Object.defineProperty(webOSDevPromised.connection, 'getStatus', {
@@ -67,5 +67,7 @@ export interface WebOSDevPromised extends Omit<WebOSTV.WebOSDev, 'launch' | 'LGU
    * const drmType = webOSDevPromised.DRM.Type;
    * const drmAgent = webOSDevPromised.drmAgent(drmType);
    */
-  drmAgent(type: WebOSTV.DRMType[keyof WebOSTV.DRMType]): DRMAgentPromised;
+  drmAgent<
+  TDrmType extends WebOSTV.DRMType[keyof WebOSTV.DRMType] = WebOSTV.DRMType[keyof WebOSTV.DRMType]
+  >(type: TDrmType): DRMAgentPromised<TDrmType>;
 }

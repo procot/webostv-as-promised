@@ -11,8 +11,10 @@ import { promisifyRequest } from './promisifyRequest';
  * @param drmAgent instance of `DRMAgent`
  * @returns promised `DRMAgent` instance
  */
-export function promisifyDrmAgent(drmAgent: WebOSTV.DRMAgent): DRMAgentPromised {
-  const drmAgentPromised: DRMAgentPromised = Object.create(drmAgent);
+export function promisifyDrmAgent<
+  TDrmType extends WebOSTV.DRMType[keyof WebOSTV.DRMType] = WebOSTV.DRMType[keyof WebOSTV.DRMType]
+>(drmAgent: WebOSTV.DRMAgent<TDrmType>): DRMAgentPromised<TDrmType> {
+  const drmAgentPromised: DRMAgentPromised<TDrmType> = Object.create(drmAgent);
 
   Object.defineProperties(drmAgentPromised, {
     getRightsError: { value: promisifyRequest(drmAgent.getRightsError.bind(drmAgent)) },
@@ -28,7 +30,9 @@ export function promisifyDrmAgent(drmAgent: WebOSTV.DRMAgent): DRMAgentPromised 
 /**
  * The `DRMAgent` interface with promised methods
  */
-export interface DRMAgentPromised extends Omit<WebOSTV.DRMAgent, 'getRightsError' | 'isLoaded' | 'load' | 'sendDrmMessage' | 'unload'> {
+export interface DRMAgentPromised<
+  TDrmType extends WebOSTV.DRMType[keyof WebOSTV.DRMType] = WebOSTV.DRMType[keyof WebOSTV.DRMType]
+> extends Omit<WebOSTV.DRMAgent<TDrmType>, 'getRightsError' | 'isLoaded' | 'load' | 'sendDrmMessage' | 'unload'> {
   /**
    * Returns error information when an error of the DRM license occurs during content playback.
    * This method is supported in the following DRM type only:
@@ -38,7 +42,7 @@ export interface DRMAgentPromised extends Omit<WebOSTV.DRMAgent, 'getRightsError
   /**
    * Checks whether a DRM client that corresponds to given application ID exists.
    */
-  isLoaded(): Promise<WebOSTV.IsLoadedResponse>;
+  isLoaded(): Promise<WebOSTV.IsLoadedResponse<TDrmType>>;
   /**
    * Creates a client instance for a certain type of DRM.
    * The DRM type is specified when a DRM agent is created.
