@@ -12,13 +12,13 @@ import { promisifyRequest } from './promisifyRequest';
  * @param webOSDev `webOSDev` object
  * @returns promised `webOSDev` object
  */
-export function promisifyWebOSDev(webOSDev: WebOSDev): WebOSDevPromised {
+export function promisifyWebOSDev(webOSDev: WebOSTV.WebOSDev): WebOSDevPromised {
   const webOSDevPromised: WebOSDevPromised = Object.create(webOSDev);
 
   Object.defineProperties(webOSDevPromised, {
     launch: { value: promisifyRequest(webOSDev.launch.bind(webOSDev)) },
     LGUDID: { value: promisifyRequest(webOSDev.LGUDID.bind(webOSDev)) },
-    drmAgent: { value: (type: string) => promisifyDrmAgent(webOSDev.drmAgent(type)) }
+    drmAgent: { value: (type: WebOSTV.DRMType[keyof WebOSTV.DRMType]) => promisifyDrmAgent(webOSDev.drmAgent(type)) }
   });
 
   Object.defineProperty(webOSDevPromised.connection, 'getStatus', {
@@ -31,16 +31,16 @@ export function promisifyWebOSDev(webOSDev: WebOSDev): WebOSDevPromised {
 /**
  * `LaunchParameters` type without `onSuccess` and `onFailure` field
  */
-export type LaunchParametersPromised = Omit<LaunchParameters, RequestCallback>;
+export type LaunchParametersPromised = Omit<WebOSTV.LaunchParameters, RequestCallback>;
 /**
  * `GetConnectionStatusParameters` type without `onSuccess` and `onFailure` field
  */
-export type GetConnectionStatusParametersPromised = Omit<GetConnectionStatusParameters, RequestCallback>;
+export type GetConnectionStatusParametersPromised = Omit<WebOSTV.GetConnectionStatusParameters, RequestCallback>;
 
 /**
  * The `WebOSDev` interface with promised methods
  */
-export interface WebOSDevPromised extends Omit<WebOSDev, 'launch' | 'LGUDID' | 'connection' | 'drmAgent'> {
+export interface WebOSDevPromised extends Omit<WebOSTV.WebOSDev, 'launch' | 'LGUDID' | 'connection' | 'drmAgent'> {
   /**
    * Launches an application with parameters.
    * @param parameters The JSON object containing an app ID, parameters
@@ -49,13 +49,13 @@ export interface WebOSDevPromised extends Omit<WebOSDev, 'launch' | 'LGUDID' | '
   /**
    * Returns a device ID provided by the webOS TV since webOS TV 3.0.
    */
-  LGUDID(): Promise<LGUDIDResponse>;
+  LGUDID(): Promise<WebOSTV.LGUDIDResponse>;
 
   readonly connection: {
     /**
      * Returns the network connection state.
      */
-    getStatus(params: GetConnectionStatusParametersPromised): Promise<ConnectionStatus>;
+    getStatus(params: GetConnectionStatusParametersPromised): Promise<WebOSTV.ConnectionStatus>;
   };
 
   /**
@@ -67,5 +67,7 @@ export interface WebOSDevPromised extends Omit<WebOSDev, 'launch' | 'LGUDID' | '
    * const drmType = webOSDevPromised.DRM.Type;
    * const drmAgent = webOSDevPromised.drmAgent(drmType);
    */
-  drmAgent(type: DRMType[keyof DRMType]): DRMAgentPromised;
+  drmAgent<
+  TDrmType extends WebOSTV.DRMType[keyof WebOSTV.DRMType] = WebOSTV.DRMType[keyof WebOSTV.DRMType]
+  >(type: TDrmType): DRMAgentPromised<TDrmType>;
 }
