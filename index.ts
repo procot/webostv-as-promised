@@ -1,4 +1,6 @@
-import 'promise-polyfill/src/polyfill';
+if (!Promise) {
+  throw new Error('Promise is needed to use `webostv-as-promised`');
+}
 
 export { promisifyDrmAgent } from './src/promisifyDrmAgent';
 export { promisifyRequest } from './src/promisifyRequest';
