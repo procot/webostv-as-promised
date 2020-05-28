@@ -1,1 +1,1 @@
-export type RequestCallback = 'onSuccess' | 'onFailure';
+export type RequestCallback = 'onSuccess' | 'onFailure' | 'onComplete';

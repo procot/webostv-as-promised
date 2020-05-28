@@ -3,22 +3,22 @@ import { RequestCallback } from './types';
 /**
  * Wraps a method for returning the promise
  * @param fn a method for wrapping
- * @param hasReturnObject should return a object with field promise and field with return value of method (Default: `false`)
+ * @param shouldReturnObject should return a object with field promise and field with return value of method (Default: `false`)
  * @returns wrapped method
  */
 export function promisifyRequest<
   Result,
   MethodReturnType,
-  Params extends {} | undefined,
-  HasReturnObject extends boolean = false,
+  Params extends Record<string, any> | undefined,
+  ShouldReturnObject extends boolean = false,
 >(
-  fn: (params: RequestParams<Result> & Params) => MethodReturnType,
-  hasReturnObject?: HasReturnObject
+  fn: (params: WebOSTV.RequestParams<Result> & Params) => MethodReturnType,
+  shouldReturnObject?: ShouldReturnObject
 ): PromisedRequestMethod<
   Result,
   MethodReturnType,
   Params,
-  HasReturnObject
+  ShouldReturnObject
 > {
   return ((params?: Omit<Params, RequestCallback>) => {
     const resultObject: any = {};
@@ -27,9 +27,9 @@ export function promisifyRequest<
         ...(params || {}),
         onSuccess: resolve,
         onFailure: errObj => reject(new Error(`Error: ${errObj.errorCode}.${errObj.errorText}`))
-      } as Params & RequestParams<Result>);
+      } as Params & WebOSTV.RequestParams<Result>);
     });
-    return hasReturnObject ? resultObject : resultObject.promise;
+    return shouldReturnObject ? resultObject : resultObject.promise;
   }) as any;
 }
 
@@ -53,8 +53,8 @@ export interface PromisedRequestMethodReturnTypeObject<ReturnValue, Result> {
 export type PromisedRequestMethod<
   Result,
   MethodReturnType,
-  Params extends {} | undefined,
-  HasReturnObject extends boolean
+  Params extends Record<string, any> | undefined,
+  ShouldReturnObject extends boolean
 > = (
   params: Params extends undefined
     ? void
@@ -63,7 +63,7 @@ export type PromisedRequestMethod<
         ? void
         : Omit<Params, RequestCallback>
     )
-) => PromisedRequestMethodReturnType<Result, MethodReturnType, HasReturnObject>;
+) => PromisedRequestMethodReturnType<Result, MethodReturnType, ShouldReturnObject>;
 
 /**
  * The type that presents the return type of promised method
@@ -71,5 +71,5 @@ export type PromisedRequestMethod<
 export type PromisedRequestMethodReturnType<
   Result,
   MethodReturnType,
-  HasReturnObject extends boolean,
-> = HasReturnObject extends true ? PromisedRequestMethodReturnTypeObject<MethodReturnType, Result> : Promise<Result>;
+  ShouldReturnObject extends boolean,
+> = ShouldReturnObject extends true ? PromisedRequestMethodReturnTypeObject<MethodReturnType, Result> : Promise<Result>;

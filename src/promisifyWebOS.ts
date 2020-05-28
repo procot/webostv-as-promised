@@ -11,7 +11,7 @@ import { RequestCallback } from './types';
  * @param webOS `webOS` object
  * @returns promised `webOS` object
  */
-export function promisifyWebOS(webOS: WebOS): WebOSPromised {
+export function promisifyWebOS(webOS: WebOSTV.WebOS): WebOSPromised {
   const webOSPromised: WebOSPromised = Object.create(webOS);
 
   Object.defineProperties(webOSPromised, {
@@ -35,14 +35,14 @@ export function promisifyWebOS(webOS: WebOS): WebOSPromised {
 /**
  * The `WebOS` interface with promised methods
  */
-export interface WebOSPromised extends Omit<WebOS, 'deviceInfo' | 'fetchAppInfo' | 'service'> {
+export interface WebOSPromised extends Omit<WebOSTV.WebOS, 'deviceInfo' | 'fetchAppInfo' | 'service'> {
   /**
    * Returns the device-specific information regarding the TV model,
    * OS version, SDK version, screen size, and resolution
    *
    * @returns JSON object containing the device information details
    */
-  deviceInfo(): Promise<DeviceInfo>;
+  deviceInfo(): Promise<WebOSTV.DeviceInfo>;
 
   /**
    * Returns the appinfo.json data of the caller app with a saved cache
@@ -53,7 +53,7 @@ export interface WebOSPromised extends Omit<WebOS, 'deviceInfo' | 'fetchAppInfo'
    * - If your app is hosted by a server, the path will be the URL of the server
    * @returns The JSON object read from the app's appinfo.json file. If it is not found, undefined is returned.
    */
-  fetchAppInfo(path?: string): Promise<ObjectValue | undefined>;
+  fetchAppInfo(path?: string): Promise<WebOSTV.AppInfo | undefined>;
 
   readonly service: {
     /**
@@ -68,11 +68,16 @@ export interface WebOSPromised extends Omit<WebOS, 'deviceInfo' | 'fetchAppInfo'
      *
      * @returns Resulting request object. This object can be used to cancel subscriptions.
      */
-    request(uri: string, params?: ServiceRequestParamsPromised): PromisedRequestMethodReturnTypeObject<ServiceRequestReturn, any>;
+    request<TParameters extends Record<string, any> = Record<string, any>>(
+      uri: string,
+      params?: ServiceRequestParamsPromised<TParameters>
+    ): PromisedRequestMethodReturnTypeObject<WebOSTV.ServiceRequestReturn<TParameters>, any>;
   };
 }
 
 /**
  * `ServiceRequestParams` type without `onSuccess` and `onFailure` field
  */
-export type ServiceRequestParamsPromised = Omit<ServiceRequestParams, RequestCallback>;
+export type ServiceRequestParamsPromised<
+  TParameters extends Record<string, any> = Record<string, any>
+> = Omit<WebOSTV.ServiceRequestParams<TParameters>, RequestCallback>;
