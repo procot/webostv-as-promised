@@ -2,6 +2,12 @@
 
 Wrapper library [webOSTV.js](http://webostv.developer.lge.com/api/webostvjs/) on Promise
 
+# Important
+
+You should have `Promise` implementation to use `webostv-as-promised`, because `webostv-as-promised` uses `Promise`.
+
+If you want to use `webostv-as-promised` on LG webOS versions where `Promise` doesn't exists then to use a polyfill for `Promise`. Example: [`promise-polyfill`](https://www.npmjs.com/package/promise-polyfill).
+
 ## Install
 
 ```bash
