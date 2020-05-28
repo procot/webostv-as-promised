@@ -1,3 +1,4 @@
+node_modules
 .npmignore
 .gitignore
 .editorconfig
@@ -8,3 +9,5 @@ tests
 rollup.config.js
 package-lock.json
 tsconfig.json
+
+.github
