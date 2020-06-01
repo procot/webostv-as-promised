@@ -1,6 +1,6 @@
 {
   "name": "webostv-as-promised",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Wrapper library webOSTV.js on Promise",
   "main": "./bundle.js",
   "types": "index.d.ts",
