@@ -1,1 +1,1 @@
-export type RequestCallback = 'onSuccess' | 'onFailure' | 'onComplete';
+export type RequestCallback = keyof WebOSTV.RequestParams;
