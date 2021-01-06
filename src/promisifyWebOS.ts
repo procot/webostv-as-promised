@@ -1,5 +1,3 @@
-/// <reference types="@procot/webostv/webOSTV" />
-
 import { RequestCallback } from './types';
 import { ReturnedObjectOfPromisedFn, promisifyRequest } from './promisifyRequest';
 

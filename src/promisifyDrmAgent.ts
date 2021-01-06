@@ -1,5 +1,3 @@
-/// <reference types="@procot/webostv/webOSTV-dev/drmAgent" />
-
 import { RequestCallback } from './types';
 import { promisifyRequest } from './promisifyRequest';
 
