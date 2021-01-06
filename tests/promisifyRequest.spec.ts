@@ -3,7 +3,7 @@ import { promisifyRequest } from '../src/promisifyRequest';
 
 describe('promisifyRequest', () => {
   it('promised method should return promise because `returnObject` arg is false or undefined', async () => {
-    const fn = ({ onSuccess }: RequestParams<number>) => setTimeout(() => onSuccess(3), 100);
+    const fn = ({ onSuccess }: WebOSTV.RequestParams<number>) => setTimeout(() => onSuccess?.(3), 100);
 
     const promisedFn1 = promisifyRequest(fn);
     const result1 = promisedFn1();
@@ -17,8 +17,8 @@ describe('promisifyRequest', () => {
   });
 
   it('promised method should return object because `returnObject` arg is true', async () => {
-    const fn = ({ onSuccess, param1 }: RequestParams<number> & { param1: string }) => {
-      const timeout = setTimeout(() => onSuccess(3));
+    const fn = ({ onSuccess, param1 }: WebOSTV.RequestParams<number> & { param1: string }) => {
+      const timeout = setTimeout(() => onSuccess?.(3));
 
       return {
         cancel: () => clearTimeout(timeout),
