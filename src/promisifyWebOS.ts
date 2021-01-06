@@ -1,7 +1,7 @@
 /// <reference types="@procot/webostv/webOSTV" />
 
-import { PromisedRequestMethodReturnTypeObject, promisifyRequest } from './promisifyRequest';
 import { RequestCallback } from './types';
+import { ReturnedObjectOfPromisedFn, promisifyRequest } from './promisifyRequest';
 
 /**
  * Wraps a original asyncronous methods in `webOS` object or in nested object in Promise
@@ -71,7 +71,7 @@ export interface WebOSPromised extends Omit<WebOSTV.WebOS, 'deviceInfo' | 'fetch
     request<TParameters extends Record<string, any> = Record<string, any>>(
       uri: string,
       params?: ServiceRequestParamsPromised<TParameters>
-    ): PromisedRequestMethodReturnTypeObject<WebOSTV.ServiceRequestReturn<TParameters>, any>;
+    ): ReturnedObjectOfPromisedFn<WebOSTV.ServiceRequestReturn<TParameters>, any>;
   };
 }
 
